@@ -14,7 +14,6 @@
     min-height: 100vh;
   }
   
-  /* Layout Styles */
   .main-layout {
     display: flex;
     min-height: 100vh;
@@ -77,7 +76,7 @@
   }
   
   .nav-link.active {
-    background-color: #6366f1;
+    background-color: #6365f1;
     color: white;
   }
   
@@ -115,7 +114,6 @@
     color: #dc2626;
   }
   
-  /* Page Header */
   .page-header {
     display: flex;
     justify-content: space-between;
@@ -129,7 +127,7 @@
     color: #1e293b;
   }
   
-  /* Buttons */
+  /* button */
   .btn {
     padding: 12px 24px;
     border: none;
@@ -169,7 +167,6 @@
     background-color: #b91c1c;
   }
   
-  /* Stats Cards */
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -178,7 +175,7 @@
   }
   
   .stat-card {
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #00a6ff 0%, #8b5cf6 100%);
     padding: 24px;
     border-radius: 16px;
     color: white;
@@ -215,7 +212,6 @@
     font-weight: 700;
   }
   
-  /* Tables */
   .table-container {
     background: white;
     border-radius: 12px;
@@ -439,7 +435,6 @@
     }
   }
   
-  /* Toast Notifications */
   .toast {
     position: fixed;
     top: 20px;
@@ -475,7 +470,6 @@
     }
   }
   
-  /* Empty States */
   .empty-state {
     text-align: center;
     padding: 60px 20px;
