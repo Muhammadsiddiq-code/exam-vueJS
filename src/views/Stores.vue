@@ -10,7 +10,6 @@
           </button>
         </div>
   
-        <!-- Stats Cards -->
         <div class="stats-grid" style="margin-bottom: 32px;">
           <div class="stat-card">
             <div class="stat-icon">
@@ -43,7 +42,6 @@
           </div>
         </div>
   
-        <!-- Search and Filter -->
         <div class="search-section">
           <div class="search-box">
             <SearchIcon />
@@ -118,7 +116,6 @@
         </div>
       </div>
   
-      <!-- Create/Edit Store Modal -->
       <div v-if="showModal" class="modal-overlay" @click="closeModal">
         <div class="modal" @click.stop>
           <div class="modal-header">
@@ -223,7 +220,6 @@
         </div>
       </div>
   
-      <!-- Store Details Modal -->
       <div v-if="showDetailsModal" class="modal-overlay" @click="closeDetailsModal">
         <div class="modal large-modal" @click.stop>
           <div class="modal-header">

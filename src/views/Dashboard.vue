@@ -6,7 +6,6 @@
           <h1 class="page-title">Dashboard</h1>
         </div>
   
-        <!-- Main Stats -->
         <div class="stats-grid">
           <div class="stat-card" @click="openModal('kirimlar')">
             <div class="stat-icon">
@@ -39,7 +38,6 @@
           </div>
         </div>
   
-        <!-- Manager Stats -->
         <div class="stats-grid" v-for="manager in managerStats" :key="manager.id">
           <div class="stat-card">
             <div class="stat-icon">
@@ -72,7 +70,6 @@
           </div>
         </div>
   
-        <!-- Warehouse Report -->
         <h2 style="margin: 48px 0 24px 0; font-size: 24px; font-weight: 700;">Omborxona hisobot</h2>
         <div class="stats-grid">
           <div class="stat-card">
@@ -107,7 +104,6 @@
         </div>
       </div>
   
-      <!-- Modal for detailed stats -->
       <div v-if="showModal" class="modal-overlay" @click="closeModal">
         <div class="modal" @click.stop>
           <div class="modal-header">
@@ -196,7 +192,6 @@
         this.modalTitle = type === 'kirimlar' ? 'Kirimlar' : 
                          type === 'chiqim' ? 'Chiqimlar' : 'Kutilayotgan'
         
-        // Sample data - replace with actual API call
         this.modalData = [
           {
             id: 1,
@@ -218,7 +213,6 @@
         this.showModal = false
       },
       async loadDashboardData() {
-        // Load dashboard statistics from API
         try {
           // Replace with actual API calls
           // const response = await api.get('/dashboard/stats')

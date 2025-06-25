@@ -78,7 +78,6 @@
     },
     methods: {
       logout() {
-        // Logout logic
         this.$router.push('/login')
       }
     }

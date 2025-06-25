@@ -52,8 +52,6 @@
           </div>
         </div>
       </div>
-  
-      <!-- Create/Edit Manager Modal -->
       <div v-if="showModal" class="modal-overlay" @click="closeModal">
         <div class="modal" @click.stop>
           <div class="modal-header">
@@ -138,7 +136,6 @@
         </div>
       </div>
   
-      <!-- View Manager Modal -->
       <div v-if="showViewModal" class="modal-overlay" @click="closeViewModal">
         <div class="modal" @click.stop>
           <div class="modal-header">
@@ -169,7 +166,6 @@
         </div>
       </div>
   
-      <!-- Delete Confirmation Modal -->
       <div v-if="showDeleteModal" class="modal-overlay" @click="closeDeleteModal">
         <div class="modal" @click.stop>
           <div class="modal-header">
@@ -191,7 +187,6 @@
         </div>
       </div>
   
-      <!-- Toast Notification -->
       <div v-if="toast.show" :class="['toast', toast.type]">
         {{ toast.message }}
       </div>
@@ -297,14 +292,12 @@
         
         try {
           if (this.isEditing) {
-            // Update existing manager
             const index = this.managers.findIndex(m => m.id === this.currentManager.id)
             if (index !== -1) {
               this.managers[index] = { ...this.currentManager }
             }
             this.showToast('Manager muvaffaqiyatli yangilandi', 'success')
           } else {
-            // Create new manager
             const newManager = {
               ...this.currentManager,
               id: Date.now(),

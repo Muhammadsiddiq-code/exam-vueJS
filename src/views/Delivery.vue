@@ -86,7 +86,6 @@
         </div>
       </div>
   
-      <!-- Create/Edit Modal -->
       <div v-if="showModal" class="modal-overlay" @click="closeModal">
         <div class="modal" @click.stop>
           <div class="modal-header">
@@ -183,7 +182,6 @@
         </div>
       </div>
   
-      <!-- Deliveries Modal -->
       <div v-if="showDeliveriesModal" class="modal-overlay" @click="closeDeliveriesModal">
         <div class="modal large-modal" @click.stop>
           <div class="modal-header">
@@ -234,7 +232,6 @@
         </div>
       </div>
   
-      <!-- Toast Notification -->
       <div v-if="toast.show" :class="['toast', toast.type]">
         {{ toast.message }}
       </div>

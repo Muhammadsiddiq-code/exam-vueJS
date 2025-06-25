@@ -77,7 +77,6 @@
         </div>
       </div>
   
-      <!-- Create/Edit Worker Modal -->
       <div v-if="showModal" class="modal-overlay" @click="closeModal">
         <div class="modal" @click.stop>
           <div class="modal-header">
@@ -203,7 +202,6 @@
         </div>
       </div>
   
-      <!-- Toast Notification -->
       <div v-if="toast.show" :class="['toast', toast.type]">
         {{ toast.message }}
       </div>
@@ -325,7 +323,6 @@
         this.showModal = true
       },
       viewWorker(worker) {
-        // Implementation for viewing worker details
         console.log('View worker:', worker)
       },
       deleteWorker(worker) {
