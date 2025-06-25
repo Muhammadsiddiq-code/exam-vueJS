@@ -215,9 +215,18 @@
             phone: '+998 90 123 45 67',
             email: 'azamjon@example.com',
             position: 'senior',
-            address: 'Toshkent shahar, Yunusobod tumani',
+            address: ' Farg`ona shahar, Andijon ',
             createdAt: '2025-06-20'
-          }
+          },
+          {
+            id: 2,
+            name: 'Muhammad Siddiq',
+            phone: '+998 97 827 55 77',
+            email: 'Xamidullayevich10@gmail.com',
+            position: 'junior',
+            address: 'Namangan shahar, Yangi Namangan tumani',
+            createdAt: '2025-06-25'
+          },
         ],
         showModal: false,
         showViewModal: false,
