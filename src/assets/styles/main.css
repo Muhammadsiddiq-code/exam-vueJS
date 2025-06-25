@@ -41,7 +41,6 @@
     min-height: 100vh;
   }
   
-  /* Sidebar Styles */
   .logo {
     font-size: 24px;
     font-weight: 700;
@@ -127,7 +126,6 @@
     color: #1e293b;
   }
   
-  /* button */
   .btn {
     padding: 12px 24px;
     border: none;
@@ -242,7 +240,6 @@
     background-color: #f8fafc;
   }
   
-  /* Action Buttons */
   .action-buttons {
     display: flex;
     gap: 8px;
@@ -279,7 +276,6 @@
     transform: scale(1.1);
   }
   
-  /* Modal Styles */
   .modal-overlay {
     position: fixed;
     top: 0;
@@ -329,7 +325,6 @@
     color: #1e293b;
   }
   
-  /* Form Styles */
   .form-group {
     margin-bottom: 20px;
   }
@@ -382,7 +377,6 @@
     margin-top: 24px;
   }
   
-  /* Responsive */
   @media (max-width: 768px) {
     .sidebar {
       transform: translateX(-100%);
@@ -409,7 +403,6 @@
     }
   }
   
-  /* Loading States */
   .loading {
     display: flex;
     align-items: center;
