@@ -36,7 +36,7 @@ import {
   StoreIcon,
   CreditCardIcon,
   PackageIcon,
-  BreadIcon,
+  Chrome,
   SettingsIcon,
   LogOutIcon
 } from 'lucide-vue-next'
@@ -50,7 +50,7 @@ export default {
     StoreIcon,
     CreditCardIcon,
     PackageIcon,
-    BreadIcon,
+    Chrome,
     SettingsIcon,
     LogOutIcon
   },
@@ -90,5 +90,9 @@ export default {
 <style>
 *{
   list-style: none;
+}
+
+li{
+  font-size: 20px;
 }
 </style>
