@@ -6,7 +6,7 @@
           <h1 class="page-title">Nonvoylar</h1>
           <button class="btn btn-primary" @click="openCreateModal">
             <PlusIcon />
-            Nonvoy qo'shish
+            
           </button>
         </div>
   
@@ -226,32 +226,32 @@
         searchQuery: '',
         filterStatus: '',
         workers: [
-          {
-            id: 1,
-            name: 'Bobur Karimov',
-            phone: '+998 90 123 45 67',
-            passport: 'AA 1234567',
-            birthDate: '1990-05-15',
-            startDate: '2024-01-15',
-            salary: 3000000,
-            status: 'active',
-            position: 'baker',
-            address: 'Toshkent shahar, Chilonzor tumani, 5-kvartal',
-            notes: 'Tajribali nonvoy'
-          },
-          {
-            id: 2,
-            name: 'Sardor Umarov',
-            phone: '+998 91 234 56 78',
-            passport: 'AB 2345678',
-            birthDate: '1985-08-22',
-            startDate: '2023-11-10',
-            salary: 2500000,
-            status: 'active',
-            position: 'assistant',
-            address: 'Toshkent shahar, Yashnobod tumani, 12-kvartal',
-            notes: 'Yaxshi yordamchi'
-          }
+          // {
+          //   id: 1,
+          //   name: 'Bobur Karimov',
+          //   phone: '+998 90 123 45 67',
+          //   passport: 'AA 1234567',
+          //   birthDate: '1990-05-15',
+          //   startDate: '2024-01-15',
+          //   salary: 3000000,
+          //   status: 'active',
+          //   position: 'baker',
+          //   address: 'Toshkent shahar, Chilonzor tumani, 5-kvartal',
+          //   notes: 'Tajribali nonvoy'
+          // },
+          // {
+          //   id: 2,
+          //   name: 'Sardor Umarov',
+          //   phone: '+998 91 234 56 78',
+          //   passport: 'AB 2345678',
+          //   birthDate: '1985-08-22',
+          //   startDate: '2023-11-10',
+          //   salary: 2500000,
+          //   status: 'active',
+          //   position: 'assistant',
+          //   address: 'Toshkent shahar, Yashnobod tumani, 12-kvartal',
+          //   notes: 'Yaxshi yordamchi'
+          // }
         ],
         showModal: false,
         isEditing: false,
@@ -298,7 +298,7 @@
         return new Date(date).toLocaleDateString('uz-UZ')
       },
       formatSalary(salary) {
-        return new Intl.NumberFormat('uz-UZ').format(salary) + ' so\'m'
+        return new Intl.NumberFormat('uz-UZ').format(salary) + ' so`m'
       },
       openCreateModal() {
         this.isEditing = false

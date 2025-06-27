@@ -73,7 +73,7 @@ export default {
         { name: 'Stores', label: "Do'konlar", path: '/stores', icon: 'StoreIcon' },
         { name: 'Expenses', label: 'Chiqimlar', path: '/expenses', icon: 'CreditCardIcon' },
         { name: 'Warehouse', label: 'Omborxona', path: '/warehouse', icon: 'PackageIcon' },
-        { name: 'BreadTypes', label: 'Non turlari', path: '/bread-types', icon: 'BreadIcon' },
+        { name: 'BreadTypes', label: 'Non turlari', path: '/bread-types', icon: 'Chrome' },
         { name: 'Settings', label: 'Sozlamalar', path: '/settings', icon: 'SettingsIcon' }
       ]
     }

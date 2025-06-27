@@ -197,6 +197,18 @@
   import Sidebar from '@/components/Layout/Sidebar.vue'
   import { PlusIcon, EyeIcon, EditIcon, TrashIcon } from 'lucide-vue-next'
   
+
+
+  import api from '../axios'
+
+// Barcha managerlarni olish
+export const getAllManagers = async () => {
+  const res = await api.get('/api/managers')
+  return res.data
+}
+
+
+
   export default {
     name: 'Managers',
     components: {
