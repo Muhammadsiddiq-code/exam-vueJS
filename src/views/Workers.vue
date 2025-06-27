@@ -10,7 +10,6 @@
           </button>
         </div>
   
-        <!-- Search and Filter -->
         <div class="search-section">
           <div class="search-box">
             <SearchIcon />
