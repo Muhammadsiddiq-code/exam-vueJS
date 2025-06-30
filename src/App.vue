@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div id="app">
     <router-view />
   </div>
@@ -8,23 +8,13 @@
 export default {
   name: 'App'
 }
+
 </script>
 
 <style>
 @import './assets/styles/main.css';
-</style> -->
+</style>
 
 
 
-<script>
-import { getSalom } from './api/salom'
 
-export default {
-  name: 'App',
-  mounted() {
-    getSalom().then(data => {
-      console.log(data.xabar) // Backenddan salom!
-    })
-  }
-}
-</script>
