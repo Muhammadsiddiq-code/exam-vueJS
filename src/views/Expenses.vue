@@ -1,99 +1,4 @@
-<!-- <template>
-    <div class="chiqim">
-     <div class="chiqim_top">
-       <h1>Chiqimlar</h1>
-       <button>Chiqim yaratish</button>
-     </div>
-       <div class="chiqim_blog">
-         <header>
-           <b>№</b>
-           <b>Nomi</b>
-           <b>Soni</b>
-           <b>Narxi</b>
-           <b>Tavsif</b>
-           <b>Kimdan</b>
-           <b></b>
-         </header>
-       </div>
-   </div>
- </template>
- 
- 
- 
- <script>
- export default {
-   name: "Chiqim"
- }
- </script>
- 
- 
- 
- <style>
-    .chiqim{
- 
-   width: 88%;
- }
- .chiqim_blog{
-   border: 1px solid rgb(200, 200, 200);
-   height: 85vh;
-   border-radius: 20px;
-   padding: 20px;
- }
- .chiqim_top{
-   display: flex;
-   height: 70px;
-   justify-content: space-between;
-   align-items: center;
-   
- }
- .chiqim_top h1{
-     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
- }
- .chiqim_top button{
-   width: 250px;
-   height: 40px;
-     background-color: #5565ff;
-     border: none;
-     border-radius: 10px;
-     font-family: Verdana, Geneva, Tahoma, sans-serif;
- font-size: 18px;
- color: #fff;
- }
- .chiqim_blog header{
-   display: flex;
-   justify-content: space-between;
-   background-color: #ddd;
-   padding: 20px;
-   border-radius: 10px;
- 
- }
- header b{
-   width: 250px;
- }
- </style> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- <template>
+<template>
   <div class="dashboard-container">
     <Sidebar />
     
@@ -122,6 +27,7 @@
                 v-model="searchQuery"
                 @input="handleSearch"
                 class="search-input"
+                ref="searchInput"
               />
               <button v-if="searchQuery" class="search-clear" @click="clearSearch">
                 <X />
@@ -649,45 +555,45 @@
               <select class="form-select" v-model="currentExpense.unit" required :class="{ error: formErrors.unit }">
                 <option value="">Birlikni tanlang</option>
                 <option value="kg">kg</option>
-                <option value="dona">dona</option>\
-                <option value=\"litr\">litr</option>\
+                <option value="dona">dona</option>
+                <option value="litr">litr</option>
                 <option value="metr">metr</option>
                 <option value="paket">paket</option>
                 <option value="qop">qop</option>
               </select>
-              <span v-if="formErrors.unit\" class=\"form-error\">{{ formErrors.unit }}</span>\
+              <span v-if="formErrors.unit" class="form-error">{{ formErrors.unit }}</span>
             </div>
             <div class="form-group">
-              <label class="form-label\">Narxi *</label>\
-              <input \
+              <label class="form-label">Narxi *</label>
+              <input 
                 type="number"
                 class="form-input"
-                v-model="currentExpense.price"\
+                v-model="currentExpense.price"
                 placeholder="0"
                 required
                 min="0"
                 step="0.01"
-                :class=\"{ error: formErrors.price }"
+                :class="{ error: formErrors.price }"
               />
-              <span v-if="formErrors.price" class=\"form-error\">{{ formErrors.price }}</span>
-            </div>\
+              <span v-if="formErrors.price" class="form-error">{{ formErrors.price }}</span>
+            </div>
             <div class="form-group">
               <label class="form-label">Kimdan *</label>
               <input 
-                type="text"\
+                type="text"
                 class="form-input"
-                v-model="currentExpense.supplier"\
+                v-model="currentExpense.supplier"
                 placeholder="Ta'minotchi nomi"
                 required
                 :class="{ error: formErrors.supplier }"
-              />\
+              />
               <span v-if="formErrors.supplier" class="form-error">{{ formErrors.supplier }}</span>
-            </div>\
+            </div>
             <div class="form-group">
               <label class="form-label">Sana *</label>
-              <input \
-                type="date"\
-                class=\"form-input"\
+              <input 
+                type="date"
+                class="form-input"
                 v-model="currentExpense.date"
                 required
                 :class="{ error: formErrors.date }"
@@ -887,11 +793,10 @@ import {
 } from 'lucide-vue-next'
 import Sidebar from '@/components/Layout/Sidebar.vue'
 
-// Mock API - Bu yerda haqiqiy API bilan almashtiring
+// Mock API - Replace with real API in production
 const mockApi = {
   async get(url) {
     await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate network delay
-    
     if (url === '/expenses') {
       return {
         data: [
@@ -963,7 +868,6 @@ const mockApi = {
 
   async post(url, data) {
     await new Promise(resolve => setTimeout(resolve, 1000))
-    
     if (url === '/expenses') {
       return {
         data: {
@@ -1180,7 +1084,6 @@ export default {
       document.removeEventListener('keydown', this.handleKeydown)
     },
     handleOutsideClick(event) {
-      // Close dropdowns when clicking outside
       if (!event.target.closest('.filter-dropdown')) {
         this.showFilter = false
       }
@@ -1192,7 +1095,6 @@ export default {
       }
     },
     handleKeydown(event) {
-      // Handle keyboard shortcuts
       if (event.ctrlKey || event.metaKey) {
         switch (event.key) {
           case 'k':
@@ -1206,7 +1108,6 @@ export default {
         }
       }
       
-      // Handle escape key
       if (event.key === 'Escape') {
         if (this.showModal) this.closeModal()
         if (this.showViewModal) this.closeViewModal()
@@ -1223,7 +1124,7 @@ export default {
       
       try {
         const response = await mockApi.get('/expenses')
-        this.expenses = response.data
+        this.expenses = response.data || [] // Ensure empty array if data is undefined
         this.applyFiltersAndSearch()
         this.showToast('Muvaffaqiyat', 'Ma\'lumotlar muvaffaqiyatli yuklandi', 'success')
       } catch (error) {
@@ -1294,7 +1195,6 @@ export default {
       this.formLoading = true
       
       try {
-        // Simulate bulk delete
         await Promise.all(
           this.selectedExpenses.map(id => mockApi.delete(`/expenses/${id}`))
         )
@@ -1346,7 +1246,6 @@ export default {
     },
     
     printExpense(expense) {
-      // Mock print functionality
       this.showToast('Ma\'lumot', 'Chop etish funksiyasi ishlab chiqilmoqda', 'info')
       this.activeActionMenu = null
     },
@@ -1364,7 +1263,7 @@ export default {
       }
       
       if (!this.currentExpense.quantity || this.currentExpense.quantity <= 0) {
-        this.formErrors.quantity = 'Miqdor kiritilishi shart'
+        this.formErrors.quantity = 'Miqdor kiritilishi shart va 0 dan katta bo\'lishi kerak'
       }
       
       if (!this.currentExpense.unit) {
@@ -1372,7 +1271,7 @@ export default {
       }
       
       if (!this.currentExpense.price || this.currentExpense.price <= 0) {
-        this.formErrors.price = 'Narx kiritilishi shart'
+        this.formErrors.price = 'Narx kiritilishi shart va 0 dan katta bo\'lishi kerak'
       }
       
       if (!this.currentExpense.supplier.trim()) {
@@ -1418,7 +1317,7 @@ export default {
         filtered = filtered.filter(expense =>
           expense.name.toLowerCase().includes(query) ||
           expense.supplier.toLowerCase().includes(query) ||
-          expense.description.toLowerCase().includes(query)
+          (expense.description?.toLowerCase() || '').includes(query)
         )
       }
       
@@ -1437,7 +1336,7 @@ export default {
       if (this.filters.thisWeek) {
         const oneWeekAgo = new Date()
         oneWeekAgo.setDate(oneWeekAgo.getDate() - 7)
-        filtered = filtered.filter(expense => new Date(expense.date) > oneWeekAgo)
+        filtered = filtered.filter(expense => new Date(expense.date) >= oneWeekAgo)
       }
       
       if (this.filters.thisMonth) {
@@ -1507,8 +1406,8 @@ export default {
         let bVal = b[this.sortField]
         
         if (this.sortField === 'date') {
-          aVal = new Date(aVal)
-          bVal = new Date(bVal)
+          aVal = new Date(aVal).getTime()
+          bVal = new Date(bVal).getTime()
         } else if (this.sortField === 'quantity' || this.sortField === 'price') {
           aVal = Number(aVal)
           bVal = Number(bVal)
@@ -1596,12 +1495,12 @@ export default {
     },
     
     viewExpense(expense) {
-      this.viewingExpense = expense
+      this.viewingExpense = { ...expense } // Create a copy to avoid mutating original
       this.showViewModal = true
     },
     
     deleteExpense(expense) {
-      this.deletingExpense = expense
+      this.deletingExpense = { ...expense }
       this.showDeleteModal = true
     },
     
@@ -1635,12 +1534,12 @@ export default {
       const headers = ['ID', 'Nomi', 'Miqdori', 'Birlik', 'Narxi', 'Jami', 'Ta\'minotchi', 'Kategoriya', 'Sana']
       const rows = data.map(e => [
         e.id,
-        `"${e.name}"`,
+        `"${e.name.replace(/"/g, '""')}"`, // Escape quotes in CSV
         e.quantity,
         e.unit,
         e.price,
         e.quantity * e.price,
-        `"${e.supplier}"`,
+        `"${e.supplier.replace(/"/g, '""')}"`,
         this.getCategoryName(e.category),
         this.formatDate(e.date)
       ])
@@ -1651,7 +1550,9 @@ export default {
     // Utility Functions
     formatDate(date) {
       if (!date) return 'N/A'
-      return new Date(date).toLocaleDateString('uz-UZ', {
+      const d = new Date(date)
+      if (isNaN(d.getTime())) return 'N/A' // Handle invalid dates
+      return d.toLocaleDateString('uz-UZ', {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit'
@@ -1660,10 +1561,9 @@ export default {
     
     formatDateTime(date) {
       if (!date) return 'N/A'
-      return new Date(date).toLocaleString('uz-UZ', {
-        year:
-      if (!date) return 'N/A'
-      return new Date(date).toLocaleString('uz-UZ', {
+      const d = new Date(date)
+      if (isNaN(d.getTime())) return 'N/A' // Handle invalid dates
+      return d.toLocaleString('uz-UZ', {
         year: 'numeric',
         month: '2-digit',
         day: '2-digit',
@@ -1673,7 +1573,7 @@ export default {
     },
     
     formatCurrency(amount) {
-      if (!amount) return '0 so\'m'
+      if (!amount || isNaN(amount)) return '0 so\'m'
       return new Intl.NumberFormat('uz-UZ').format(amount) + ' so\'m'
     },
     
@@ -1689,11 +1589,11 @@ export default {
         utility: 'Kommunal',
         other: 'Boshqa'
       }
-      return categories[category] || category
+      return categories[category] || category || 'N/A'
     },
     
     getCategoryClass(category) {
-      return category
+      return category || 'other'
     },
     
     getCategoryColor(category) {
@@ -1757,7 +1657,7 @@ export default {
 /* Main Content */
 .main-content {
   flex: 1;
-  margin-left: 280px; /* O'zingizning sidebar kengligiga qarab o'zgartiring */
+  margin-left: 280px;
   padding: 24px;
   overflow-x: auto;
 }
