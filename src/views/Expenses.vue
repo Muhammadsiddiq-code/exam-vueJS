@@ -3035,9 +3035,10 @@ export default {
   text-align: center;
 }
 
-.delete-icon {
-  width: 64px;
-  height: 64px;
-  {/* </merged_code> */}
+.delete-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 12px 0;
 }
 </style>
