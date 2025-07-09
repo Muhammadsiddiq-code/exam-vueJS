@@ -2,7 +2,6 @@
   <div class="dashboard-container">
     <Sidebar />
     
-    <!-- Main Content -->
     <div class="main-content">
       <!-- Header -->
       <div class="content-header">
@@ -18,7 +17,6 @@
         </div>
         <div class="header-right">
           <div class="header-actions">
-            <!-- Search -->
             <div class="search-box">
               <Search class="search-icon" />
               <input 
@@ -34,7 +32,6 @@
               </button>
             </div>
             
-            <!-- Filter -->
             <div class="filter-dropdown" ref="filterDropdown">
               <button class="filter-btn" @click="toggleFilter">
                 <Filter class="filter-icon" />
@@ -96,19 +93,16 @@
               </div>
             </div>
             
-            <!-- Export -->
             <button class="export-btn" @click="exportData" :disabled="filteredExpenses.length === 0">
               <Download class="export-icon" />
               Export
             </button>
             
-            <!-- Refresh -->
             <button class="refresh-btn" @click="loadExpenses" :disabled="loading">
               <RefreshCw class="refresh-icon" :class="{ 'spinning': loading }" />
               Yangilash
             </button>
             
-            <!-- Create Button -->
             <button class="create-btn" @click="openCreateModal">
               <Plus class="create-icon" />
               Chiqim yaratish
@@ -117,7 +111,6 @@
         </div>
       </div>
 
-      <!-- Stats Cards -->
       <div class="stats-grid">
         <div class="stat-card" @click="filterByPeriod('all')">
           <div class="stat-icon total">
@@ -163,9 +156,7 @@
         </div>
       </div>
 
-      <!-- Table Container -->
       <div class="table-container">
-        <!-- Table Header -->
         <div class="table-header">
           <div class="table-title">
             <h3>Chiqimlar ro'yxati</h3>
@@ -197,13 +188,11 @@
           </div>
         </div>
 
-        <!-- Loading State -->
         <div v-if="loading" class="loading-container">
           <div class="loading-spinner"></div>
           <p>Ma'lumotlar yuklanmoqda...</p>
         </div>
 
-        <!-- Error State -->
         <div v-else-if="error" class="error-state">
           <div class="error-icon">
             <AlertCircle />
@@ -216,7 +205,6 @@
           </button>
         </div>
 
-        <!-- Empty State -->
         <div v-else-if="filteredExpenses.length === 0 && !loading" class="empty-state">
           <div class="empty-illustration">
             <TrendingDown class="empty-icon" />
@@ -240,7 +228,6 @@
           </button>
         </div>
 
-        <!-- Table View -->
         <div v-else-if="viewMode === 'table'" class="table-wrapper">
           <table class="expenses-table">
             <thead>
@@ -373,7 +360,6 @@
           </table>
         </div>
 
-        <!-- Card View -->
         <div v-else class="cards-grid">
           <div 
             v-for="expense in paginatedExpenses" 
@@ -433,7 +419,6 @@
           </div>
         </div>
 
-        <!-- Pagination -->
         <div v-if="totalPages > 1" class="pagination">
           <button 
             class="pagination-btn"
@@ -480,7 +465,6 @@
           </button>
         </div>
 
-        <!-- Items per page selector -->
         <div class="pagination-info">
           <div class="items-per-page">
             <label>Sahifada:</label>
@@ -499,7 +483,6 @@
       </div>
     </div>
 
-    <!-- Create/Edit Modal -->
     <div v-if="showModal" class="modal-overlay" @click="closeModal">
       <div class="modal" @click.stop>
         <div class="modal-header">
@@ -631,7 +614,6 @@
       </div>
     </div>
 
-    <!-- View Modal -->
     <div v-if="showViewModal" class="modal-overlay" @click="closeViewModal">
       <div class="modal large" @click.stop>
         <div class="modal-header">
@@ -729,7 +711,6 @@
       </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
     <div v-if="showDeleteModal" class="modal-overlay" @click="closeDeleteModal">
       <div class="modal small" @click.stop>
         <div class="modal-header">
@@ -762,7 +743,6 @@
       </div>
     </div>
 
-    <!-- Toast Notifications -->
     <div class="toast-container">
       <transition-group name="toast" tag="div">
         <div v-for="toast in toasts" :key="toast.id" :class="['toast', toast.type]">
@@ -793,10 +773,10 @@ import {
 } from 'lucide-vue-next'
 import Sidebar from '@/components/Layout/Sidebar.vue'
 
-// Mock API - Replace with real API in production
+
 const mockApi = {
   async get(url) {
-    await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 1000)) 
     if (url === '/expenses') {
       return {
         data: [
@@ -901,11 +881,9 @@ export default {
   },
   data() {
     return {
-      // Data
       expenses: [],
       filteredExpenses: [],
       
-      // UI State
       loading: false,
       formLoading: false,
       error: null,
@@ -915,10 +893,9 @@ export default {
       showFilter: false,
       showBulkActions: false,
       isEditing: false,
-      viewMode: 'table', // 'table' or 'cards'
+      viewMode: 'table', 
       activeActionMenu: null,
       
-      // Form Data
       currentExpense: {
         name: '',
         quantity: '',
@@ -934,7 +911,6 @@ export default {
       deletingExpense: {},
       formErrors: {},
       
-      // Search & Filter
       searchQuery: '',
       filters: {
         material: false,
@@ -963,7 +939,6 @@ export default {
     }
   },
   computed: {
-    // Stats
     totalExpenses() {
       return this.expenses.length
     },
@@ -1004,7 +979,7 @@ export default {
     },
     expenseChange() {
       // Mock expense change calculation
-      return Math.floor(Math.random() * 20) - 10 // Random between -10 and +10
+      return Math.floor(Math.random() * 20) - 10 
     },
     
     // Filters
@@ -1060,7 +1035,6 @@ export default {
       return pages
     },
     
-    // Selection
     allSelected() {
       return this.paginatedExpenses.length > 0 && 
              this.paginatedExpenses.every(e => this.selectedExpenses.includes(e.id))
@@ -1117,14 +1091,13 @@ export default {
       }
     },
     
-    // API Methods
     async loadExpenses() {
       this.loading = true
       this.error = null
       
       try {
         const response = await mockApi.get('/expenses')
-        this.expenses = response.data || [] // Ensure empty array if data is undefined
+        this.expenses = response.data || [] 
         this.applyFiltersAndSearch()
         this.showToast('Muvaffaqiyat', 'Ma\'lumotlar muvaffaqiyatli yuklandi', 'success')
       } catch (error) {
@@ -1250,7 +1223,6 @@ export default {
       this.activeActionMenu = null
     },
     
-    // Form Validation
     validateForm() {
       this.formErrors = {}
       
@@ -1285,7 +1257,6 @@ export default {
       return Object.keys(this.formErrors).length === 0
     },
     
-    // Error handling
     getErrorMessage(error) {
       if (error.response?.data?.message) {
         return error.response.data.message
@@ -1298,7 +1269,6 @@ export default {
       }
     },
     
-    // Search & Filter
     handleSearch() {
       this.applyFiltersAndSearch()
     },
@@ -1311,7 +1281,6 @@ export default {
     applyFiltersAndSearch() {
       let filtered = [...this.expenses]
       
-      // Search filter
       if (this.searchQuery) {
         const query = this.searchQuery.toLowerCase()
         filtered = filtered.filter(expense =>
@@ -1321,13 +1290,11 @@ export default {
         )
       }
       
-      // Category filters
       const categoryFilters = ['material', 'salary', 'utility', 'other'].filter(key => this.filters[key])
       if (categoryFilters.length > 0) {
         filtered = filtered.filter(expense => categoryFilters.includes(expense.category))
       }
       
-      // Date filters
       if (this.filters.today) {
         const today = new Date().toISOString().split('T')[0]
         filtered = filtered.filter(expense => expense.date === today)
@@ -1388,7 +1355,6 @@ export default {
       this.applyFiltersAndSearch()
     },
     
-    // Sorting
     sortBy(field) {
       if (this.sortField === field) {
         this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc'
@@ -1446,17 +1412,14 @@ export default {
       }
     },
     
-    // View Toggle
     toggleView() {
       this.viewMode = this.viewMode === 'table' ? 'cards' : 'table'
     },
     
-    // Action Menu
     toggleActionMenu(expenseId) {
       this.activeActionMenu = this.activeActionMenu === expenseId ? null : expenseId
     },
     
-    // Pagination
     goToPage(page) {
       if (page >= 1 && page <= this.totalPages && page !== '...') {
         this.currentPage = page
@@ -1468,7 +1431,6 @@ export default {
       this.applyFiltersAndSearch()
     },
     
-    // Modal Management
     openCreateModal() {
       this.isEditing = false
       this.currentExpense = {
@@ -1495,7 +1457,7 @@ export default {
     },
     
     viewExpense(expense) {
-      this.viewingExpense = { ...expense } // Create a copy to avoid mutating original
+      this.viewingExpense = { ...expense } 
       this.showViewModal = true
     },
     
@@ -1517,7 +1479,6 @@ export default {
       this.showDeleteModal = false
     },
     
-    // Export
     exportData() {
       const csvContent = this.generateCSV(this.filteredExpenses)
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' })
@@ -1534,8 +1495,8 @@ export default {
       const headers = ['ID', 'Nomi', 'Miqdori', 'Birlik', 'Narxi', 'Jami', 'Ta\'minotchi', 'Kategoriya', 'Sana']
       const rows = data.map(e => [
         e.id,
-        `"${e.name.replace(/"/g, '""')}"`, // Escape quotes in CSV
-        e.quantity,
+        `"${e.name.replace(/"/g, '""')}"`, 
+                e.quantity,
         e.unit,
         e.price,
         e.quantity * e.price,
@@ -1551,7 +1512,7 @@ export default {
     formatDate(date) {
       if (!date) return 'N/A'
       const d = new Date(date)
-      if (isNaN(d.getTime())) return 'N/A' // Handle invalid dates
+      if (isNaN(d.getTime())) return 'N/A'
       return d.toLocaleDateString('uz-UZ', {
         year: 'numeric',
         month: '2-digit',
@@ -1562,7 +1523,7 @@ export default {
     formatDateTime(date) {
       if (!date) return 'N/A'
       const d = new Date(date)
-      if (isNaN(d.getTime())) return 'N/A' // Handle invalid dates
+      if (isNaN(d.getTime())) return 'N/A' 
       return d.toLocaleString('uz-UZ', {
         year: 'numeric',
         month: '2-digit',
@@ -1616,7 +1577,6 @@ export default {
       return icons[category] || Package
     },
     
-    // Toast Notifications
     showToast(title, message, type = 'success') {
       const toast = {
         id: ++this.toastId,
@@ -1654,7 +1614,6 @@ export default {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Main Content */
 .main-content {
   flex: 1;
   margin-left: 280px;
@@ -1712,7 +1671,6 @@ export default {
   gap: 12px;
 }
 
-/* Search Box */
 .search-box {
   position: relative;
   min-width: 300px;
@@ -1765,7 +1723,6 @@ export default {
   background: #f1f5f9;
 }
 
-/* Filter Dropdown */
 .filter-dropdown {
   position: relative;
 }
@@ -1872,7 +1829,6 @@ export default {
   background: #f1f5f9;
 }
 
-/* Action Buttons */
 .export-btn, .create-btn, .refresh-btn {
   display: flex;
   align-items: center;
@@ -1920,7 +1876,6 @@ export default {
   animation: spin 1s linear infinite;
 }
 
-/* Stats Grid */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -2106,7 +2061,6 @@ export default {
   background: #fef2f2;
 }
 
-/* Loading State */
 .loading-container {
   display: flex;
   flex-direction: column;
@@ -2137,7 +2091,6 @@ export default {
   100% { transform: rotate(360deg); }
 }
 
-/* Error State */
 .error-state {
   text-align: center;
   padding: 60px 24px;
@@ -2182,7 +2135,6 @@ export default {
   background: #4338ca;
 }
 
-/* Empty State */
 .empty-state {
   text-align: center;
   padding: 60px 24px;
@@ -2233,7 +2185,6 @@ export default {
   transform: translateY(-1px);
 }
 
-/* Table */
 .table-wrapper {
   overflow-x: auto;
 }
@@ -2485,7 +2436,6 @@ export default {
   background: #f1f5f9;
 }
 
-/* Cards Grid */
 .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -2611,7 +2561,6 @@ export default {
   justify-content: center;
 }
 
-/* Pagination */
 .pagination {
   display: flex;
   justify-content: center;
@@ -2706,7 +2655,6 @@ export default {
   color: #64748b;
 }
 
-/* Modal Styles */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -2893,7 +2841,6 @@ export default {
   cursor: not-allowed;
 }
 
-/* View Modal */
 .view-content {
   padding: 0 24px 24px;
 }

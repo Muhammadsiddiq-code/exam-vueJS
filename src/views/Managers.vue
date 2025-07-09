@@ -205,7 +205,6 @@ export default {
   <div class="dashboard-container">
     <Sidebar />
     
-    <!-- Main Content -->
     <div class="main-content">
       <!-- Header -->
       <div class="content-header">
@@ -221,7 +220,6 @@ export default {
         </div>
         <div class="header-right">
           <div class="header-actions">
-            <!-- Search -->
             <div class="search-box">
               <Search class="search-icon" />
               <input 
@@ -236,7 +234,6 @@ export default {
               </button>
             </div>
             
-            <!-- Filter -->
             <div class="filter-dropdown" ref="filterDropdown">
               <button class="filter-btn" @click="toggleFilter">
                 <Filter class="filter-icon" />
@@ -286,19 +283,16 @@ export default {
               </div>
             </div>
             
-            <!-- Export -->
             <button class="export-btn" @click="exportData" :disabled="filteredManagers.length === 0">
               <Download class="export-icon" />
               Export
             </button>
             
-            <!-- Refresh -->
             <button class="refresh-btn" @click="loadManagers" :disabled="loading">
               <RefreshCw class="refresh-icon" :class="{ 'spinning': loading }" />
               Yangilash
             </button>
             
-            <!-- Create Button -->
             <button class="create-btn" @click="openCreateModal">
               <Plus class="create-icon" />
               Manager yaratish
@@ -307,7 +301,6 @@ export default {
         </div>
       </div>
 
-      <!-- Stats Cards -->
       <div class="stats-grid">
         <div class="stat-card" @click="filterByStatus('all')">
           <div class="stat-icon total">
