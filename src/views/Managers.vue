@@ -346,9 +346,7 @@ export default {
         </div>
       </div>
 
-      <!-- Table Container -->
       <div class="table-container">
-        <!-- Table Header -->
         <div class="table-header">
           <div class="table-title">
             <h3>Managerlar ro'yxati</h3>
@@ -384,13 +382,11 @@ export default {
           </div>
         </div>
 
-        <!-- Loading State -->
         <div v-if="loading" class="loading-container">
           <div class="loading-spinner"></div>
           <p>Ma'lumotlar yuklanmoqda...</p>
         </div>
 
-        <!-- Error State -->
         <div v-else-if="error" class="error-state">
           <div class="error-icon">
             <AlertCircle />
@@ -403,7 +399,6 @@ export default {
           </button>
         </div>
 
-        <!-- Empty State -->
         <div v-else-if="filteredManagers.length === 0 && !loading" class="empty-state">
           <div class="empty-illustration">
             <Users class="empty-icon" />
@@ -427,7 +422,6 @@ export default {
           </button>
         </div>
 
-        <!-- Table View -->
         <div v-else-if="viewMode === 'table'" class="table-wrapper">
           <table class="managers-table">
             <thead>
@@ -552,7 +546,6 @@ export default {
           </table>
         </div>
 
-        <!-- Card View -->
         <div v-else class="cards-grid">
           <div 
             v-for="manager in paginatedManagers" 
@@ -610,7 +603,6 @@ export default {
           </div>
         </div>
 
-        <!-- Pagination -->
         <div v-if="totalPages > 1" class="pagination">
           <button 
             class="pagination-btn"
@@ -657,7 +649,6 @@ export default {
           </button>
         </div>
 
-        <!-- Items per page selector -->
         <div class="pagination-info">
           <div class="items-per-page">
             <label>Sahifada:</label>
@@ -676,7 +667,6 @@ export default {
       </div>
     </div>
 
-    <!-- Create/Edit Modal -->
     <div v-if="showModal" class="modal-overlay" @click="closeModal">
       <div class="modal" @click.stop>
         <div class="modal-header">
@@ -785,7 +775,7 @@ export default {
       </div>
     </div>
 
-    <!-- View Modal -->
+    <!-- View Modal modal oyna-->
     <div v-if="showViewModal" class="modal-overlay" @click="closeViewModal">
       <div class="modal large" @click.stop>
         <div class="modal-header">
@@ -874,7 +864,7 @@ export default {
       </div>
     </div>
 
-    <!-- Delete Confirmation Modal -->
+    <!-- Delete Confirmation Modal ochirish  -->
     <div v-if="showDeleteModal" class="modal-overlay" @click="closeDeleteModal">
       <div class="modal small" @click.stop>
         <div class="modal-header">
@@ -907,7 +897,7 @@ export default {
       </div>
     </div>
 
-    <!-- Toast Notifications -->
+    <!-- Toast Notifications habarlar -->
     <div class="toast-container">
       <transition-group name="toast" tag="div">
         <div v-for="toast in toasts" :key="toast.id" :class="['toast', toast.type]">
@@ -940,10 +930,9 @@ import {
 } from 'lucide-vue-next'
 import Sidebar from '@/components/Layout/Sidebar.vue'
 
-// Mock API - Bu yerda haqiqiy API bilan almashtiring
 const mockApi = {
   async get(url) {
-    await new Promise(resolve => setTimeout(resolve, 1000)) // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 1000))
     
     if (url === '/managers') {
       return {
@@ -1001,7 +990,7 @@ const mockApi = {
         ]
       }
     }
-    throw new Error('API endpoint not found')
+    throw new Error('API olinmadi')
   },
 
   async post(url, data) {
@@ -1043,11 +1032,11 @@ export default {
   },
   data() {
     return {
-      // Data
+      // Data yani malumot baza
       managers: [],
       filteredManagers: [],
       
-      // UI State
+      // UI State dizayn
       loading: false,
       formLoading: false,
       error: null,
@@ -1057,11 +1046,10 @@ export default {
       showFilter: false,
       showBulkActions: false,
       isEditing: false,
-      viewMode: 'table', // 'table' or 'cards'
+      viewMode: 'table', 
       showPassword: false,
       activeActionMenu: null,
       
-      // Form Data
       currentManager: {
         name: '',
         phone: '',
@@ -1075,7 +1063,7 @@ export default {
       deletingManager: {},
       formErrors: {},
       
-      // Search & Filter
+      // Search & Filter yani sortch
       searchQuery: '',
       filters: {
         senior: false,
